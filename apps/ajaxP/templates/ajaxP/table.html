@@ -1,0 +1,21 @@
+<table class="table-bordered">
+    <tr>
+        <th>Lead_Id</th>
+        <th>First_Name</th>
+        <th>Last_Name</th>
+        <th>Registered datetime</th>
+        <th>Email</th>
+
+    </tr>
+    {%for user in users%}
+    
+    <tr>
+        <td>{{user.lead_id}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.registered_datetime}}</td>
+        <td>{{user.email}}</td>
+    </tr>
+    {%endfor%}
+
+</table>

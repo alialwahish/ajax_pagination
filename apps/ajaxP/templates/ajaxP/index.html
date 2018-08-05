@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+
+
+    <h1>Welcome to Django pagination</h1>
+
+    <form action="addUser" method="post" id="ajax_form">
+        {% csrf_token %}
+        <span>Name: </span>
+        <input type="text" name="name" id="ajax_name">
+
+        <br>
+        <span>From: </span>
+        <input type="date" name="from" id="ajax_fromDate">
+
+        <br>
+        <span>Date: </span>
+        <input type="date" name="date" id="ajax_toDate">
+
+    </form>
+
+
+ 
+    <div id="placeholser"></div>
+
+    <script>
+        $("#ajax_form").submit(function (e) {
+            e.preventDefault()
+        })
+
+
+        $("#ajax_name").keyup(function () {
+            $.ajax({
+                url: "/ajaxP/find",
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    $("#placeholser").html(serverResponse)
+                }
+
+            })
+        })
+
+        $("#ajax_fromDate").on('change', function () {
+            $.ajax({
+                url: "/ajaxP/find",
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    $("#placeholser").html(serverResponse)                }
+            })
+        })
+
+        $("#ajax_toDate").on('change', function () {
+            $.ajax({
+                url: "/ajaxP/find",
+                method: 'post',
+                data: $(this).parent().serialize(),
+                success: function (serverResponse) {
+                    $("#placeholser").html(serverResponse)                }
+            })
+        })
+
+
+
+    </script>
+</body>
+
+</html>
